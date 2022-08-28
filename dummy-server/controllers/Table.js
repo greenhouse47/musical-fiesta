@@ -43,8 +43,8 @@ module.exports.readTables = function readTables (req, res, next) {
     });
 };
 
-module.exports.updateTable = function updateTable (req, res, next, tableName) {
-  Table.updateTable(tableName)
+module.exports.updateTable = function updateTable (req, res, next, body, tableName) {
+  Table.updateTable(body, tableName)
     .then(function (response) {
       utils.writeJson(res, response);
     })

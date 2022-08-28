@@ -108,6 +108,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TableSchemaExample'
+  /verify:
+    post:
+      tags:
+        - verify
+      summary: Verify client app authentication.
+      description: |
+        This endpoint will verify client app for it's authenticity. If authentication
+        valid, server will send that key for transaction.
+      operationId: verifyClient
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                hash:
+                  type: string
+      responses:
+        '200':
+          description: FIXME
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session:
+                    type: string
+                    description: the session id indicate client sessions.
+                  payload:
+                    type: string
+                    description: paylod of encrypted keypair
 components:
   schemas:
     TableSchemaExample:
