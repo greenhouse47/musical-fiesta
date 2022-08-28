@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@skynetlabs/skynet-nodejs": "^2.8.0",
-    "bip39": "^3.0.4"
+    "bip39": "^3.0.4",
+    "express": "^4.18.1"
   }
 }
