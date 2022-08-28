@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@skynetlabs/skynet-nodejs": "^2.8.0"
+    "@skynetlabs/skynet-nodejs": "^2.8.0",
+    "bip39": "^3.0.4"
   }
 }
