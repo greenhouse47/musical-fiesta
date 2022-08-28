@@ -1,0 +1,249 @@
+openapi: 3.0.3
+info:
+  title: skydb backed database - OpenAPI 3.0
+  description: "Skydb is database built on top of siasky storage of sia network. Each\
+    \ record on sia are unencrypted, so this rest API will handle encryption/decryption\
+    \ on the fly."
+  license:
+    name: MIT
+  version: 0.1.0
+servers:
+- url: http://localhost:8080/
+tags:
+- name: table
+  description: |
+    Table level operation. Table is a list of datakeys point to schema of the table and data.
+    The schema will be useful if we want to expand our rest API into graphQL API.
+paths:
+  /table:
+    post:
+      tags:
+      - table
+      summary: Create new table
+      description: "Create new table with or without first data or table schema. If\
+        \ first data present, the object structure of the first data will be used\
+        \ as a schema base, but the accuracy of data type is not guaranteed."
+      operationId: createTable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TableSubmit'
+      responses:
+        "201":
+          description: Create table success.
+      x-swagger-router-controller: Table
+  /tables:
+    get:
+      tags:
+      - table
+      summary: Get list of tables.
+      description: return tables name.
+      operationId: readTables
+      responses:
+        "200":
+          description: successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tables'
+      x-swagger-router-controller: Table
+  /table/{tableName}:
+    get:
+      tags:
+      - table
+      summary: Get table schema by table name.
+      description: return table schema of table name.
+      operationId: readTable
+      parameters:
+      - name: tableName
+        in: path
+        description: name of table to fetch the schema.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableSchemaExample'
+      x-swagger-router-controller: Table
+    put:
+      tags:
+      - table
+      summary: Update table schema by table name.
+      description: |
+        Update table schema by table name. Everything in the schema
+        can be updated, exept the indexed id.
+      operationId: updateTable
+      parameters:
+      - name: tableName
+        in: path
+        description: name of table to update the schema.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableSchemaExample'
+      x-swagger-router-controller: Table
+    delete:
+      tags:
+      - table
+      summary: Delete table schema by table name.
+      description: |
+        Delete table schema by table name.
+      operationId: deleteTable
+      parameters:
+      - name: tableName
+        in: path
+        description: name of table to delete the schema.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableSchemaExample'
+      x-swagger-router-controller: Table
+components:
+  schemas:
+    TableSchemaExample:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/TableSchemaExample_name'
+        address:
+          $ref: '#/components/schemas/TableSchemaExample_address'
+        bloodType:
+          $ref: '#/components/schemas/TableSchemaExample_bloodType'
+      example:
+        address:
+          type: string
+          example: South street 14th
+        name:
+          type: string
+          example: John Doe
+        bloodType:
+          type: string
+          example: A-
+    TableDataExample:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A name of a person.
+          example: John Doe
+        address:
+          type: string
+          description: An address of a person.
+          example: South street 14th
+        bloodType:
+          type: string
+          description: Blood type of a person.
+          example: B-
+          enum:
+          - A+
+          - A-
+          - B+
+          - B-
+          - AB+
+          - AB-
+          - O+
+          - O-
+    TableSubmit:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the table that will be used in Table schema.
+          example: myTables
+        schema:
+          $ref: '#/components/schemas/TableSchemaExample'
+        data:
+          $ref: '#/components/schemas/TableDataExample'
+    Table:
+      type: object
+      properties:
+        name:
+          type: string
+          description: This is table name that will see by users.
+          example: myTable
+        _schema:
+          type: string
+          description: The datakey point to file contain schema of the table.
+          example: schema_myTable
+        _data:
+          type: string
+          description: The datakey point to file contain data of the table.
+          example: data_myTable
+      example:
+        _data: data_myTable
+        _schema: schema_myTable
+        name: myTable
+    Tables:
+      type: array
+      items:
+        $ref: '#/components/schemas/Table'
+    TableSchemaExample_name:
+      type: object
+      properties:
+        type:
+          type: string
+          description: "type of the field, this field will contain this type of data."
+          example: string
+        example:
+          type: string
+          description: An example of name field.
+          example: John Doe
+      description: field name or properties of a table named name.
+      example:
+        type: string
+        example: John Doe
+    TableSchemaExample_address:
+      type: object
+      properties:
+        type:
+          type: string
+          description: "type of the field, this field will contain this type of data."
+          example: string
+        example:
+          type: string
+          description: An example of name field.
+          example: South street 14th
+      description: field name or properties of a table named name.
+      example:
+        type: string
+        example: South street 14th
+    TableSchemaExample_bloodType:
+      type: object
+      properties:
+        type:
+          type: string
+          description: "type of the field, this field will contain this type of data."
+          example: string
+        example:
+          type: string
+          description: An example of name field.
+          example: A-
+      description: field name or properties of a table named name.
+      example:
+        type: string
+        example: A-

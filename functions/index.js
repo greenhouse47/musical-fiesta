@@ -8,8 +8,9 @@ const json = { example: "This is some example JSON data." };
 
 (async () => {
 // await client.db.setJSON(privateKey, dataKey, json);
- const { data, dataLink } = await client.db.getJSON(publicKey, dataKey);
-//    const skylink = await client.uploadFile("./image.png");
-    console.log(`data: ${data} dataLink: ${dataLink}`);
+//  const { data, dataLink } = await client.db.getJSON(publicKey, dataKey);
+// console.log(`data: ${data} dataLink: ${dataLink}`);
+   const skylink = await client.uploadFile("./file.txt");
+   console.log(skylink);
 })();
 
