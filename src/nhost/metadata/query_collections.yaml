@@ -1,1 +1,12 @@
-[]
+- name: allowed-queries
+  definition:
+    queries:
+    - name: get clients
+      query: |-
+        query clientreg {
+          client_registration {
+            url
+            libhash
+            seed
+          }
+        }
