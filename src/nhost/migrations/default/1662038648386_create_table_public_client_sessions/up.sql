@@ -1,0 +1,1 @@
+CREATE TABLE "public"."client_sessions" ("sessionid" varchar NOT NULL, "client_url" varchar NOT NULL, "expiry" integer NOT NULL, PRIMARY KEY ("sessionid") , FOREIGN KEY ("client_url") REFERENCES "public"."client_registration"("url") ON UPDATE restrict ON DELETE restrict, UNIQUE ("sessionid"));COMMENT ON TABLE "public"."client_sessions" IS E'sessions of clients';

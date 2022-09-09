@@ -1,1 +1,9 @@
-[]
+- comment: get all registered clients
+  definition:
+    query:
+      collection_name: allowed-queries
+      query_name: get clients
+  methods:
+  - GET
+  name: get clients
+  url: clients

@@ -1,0 +1,1 @@
+CREATE TABLE "public"."client_registration" ("url" varchar NOT NULL, "libhash" varchar NOT NULL, "seed" text NOT NULL, PRIMARY KEY ("url") , UNIQUE ("url"), UNIQUE ("seed"));COMMENT ON TABLE "public"."client_registration" IS E'this table contain list of registered client to access the backend.';

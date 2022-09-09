@@ -112,31 +112,13 @@ exports.readTables = function() {
  * Update table schema by table name.
  * Update table schema by table name. Everything in the schema can be updated, exept the indexed id. 
  *
+ * body TableSubmit  (optional)
  * tableName String name of table to update the schema.
- * returns TableSchemaExample
+ * no response value expected for this operation
  **/
-exports.updateTable = function(tableName) {
+exports.updateTable = function(body,tableName) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "address" : {
-    "type" : "string",
-    "example" : "South street 14th"
-  },
-  "name" : {
-    "type" : "string",
-    "example" : "John Doe"
-  },
-  "bloodType" : {
-    "type" : "string",
-    "example" : "A-"
-  }
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    resolve();
   });
 }
 
