@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../musical-palm-tree"
+		},
+		{
+			"path": "../stisla"
+		},
+		{
+			"path": "../AdminLTE-3.2.0"
+		},
+		{
+			"path": "../aunty-annie"
+		},
+		{
+			"path": "../serverless-httpdd"
+		},
+		{
+			"path": "../turbo-happiness"
+		},
+		{
+			"path": "../silver-funicular"
+		},
+		{
+			"path": "../node-apiclient"
+		}
+	],
+	"settings": {}
+}

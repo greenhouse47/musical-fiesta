@@ -1,0 +1,21 @@
+{
+  "name": "datalib",
+  "version": "0.1.0",
+  "description": "database library that communicate to backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --verbose"
+  },
+  "author": "Septian wibisono",
+  "license": "MIT",
+  "dependencies": {
+    "@skynetlabs/skynet-nodejs": "^2.8.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "chai-bytes": "^0.1.2",
+    "chai-files": "^1.4.0",
+    "mocha": "^10.0.0"
+  }
+}

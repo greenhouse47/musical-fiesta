@@ -134,4 +134,4 @@ auth:
       issuer: nhost
 storage:
   force_download_for_content_types: text/html,application/javascript
-version: 3
+version: "3"
